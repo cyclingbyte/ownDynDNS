@@ -41,7 +41,7 @@ final class Payload {
     public function __construct(array $payload) {
         foreach (get_object_vars($this) as $key => $val) {
             if (isset($payload[$key])) {
-                $this->$key = $payload[$key];
+                $this->$key = rawurldecode($payload[$key]);
             }
         }
     }
