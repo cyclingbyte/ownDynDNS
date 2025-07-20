@@ -15,7 +15,7 @@ if (!file_exists('.env')) {
     throw new RuntimeException('.env file missing');
 }
 
-$config = parse_ini_file('.env', false, INI_SCANNER_TYPED);
+$config = parse_ini_file('../.env', false, INI_SCANNER_TYPED);
 
 // Get the domains from the URL parameter and split them from the comma separated string
 $domains = explode(',', $_REQUEST['domain']);
