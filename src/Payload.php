@@ -2,8 +2,7 @@
 
 namespace netcup\DNS\API;
 
-final class Payload
-{
+final class Payload {
     /**
      * @var string
      */
@@ -39,8 +38,7 @@ final class Payload
      */
     private $force = false;
 
-    public function __construct(array $payload)
-    {
+    public function __construct(array $payload) {
         foreach (get_object_vars($this) as $key => $val) {
             if (isset($payload[$key])) {
                 $this->$key = $payload[$key];
@@ -51,8 +49,7 @@ final class Payload
     /**
      * @return bool
      */
-    public function isValid()
-    {
+    public function isValid() {
         return
             !empty($this->user) &&
             !empty($this->password) &&
@@ -71,32 +68,28 @@ final class Payload
     /**
      * @return string
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->user;
     }
 
     /**
      * @return string
      */
-    public function getPassword()
-    {
+    public function getPassword() {
         return $this->password;
     }
 
     /**
      * @return string
      */
-    public function getDomain()
-    {
+    public function getDomain() {
         return $this->domain;
     }
 
     /**
      * @return array
      */
-    public function getMatcher()
-    {
+    public function getMatcher() {
         switch ($this->mode) {
             case 'both':
                 return ['@', '*'];
@@ -124,8 +117,7 @@ final class Payload
      *
      * @return string
      */
-    public function getHostname()
-    {
+    public function getHostname() {
         // hack if top level domain are used for dynDNS
         if (1 === substr_count($this->domain, '.')) {
             return $this->domain;
@@ -139,40 +131,35 @@ final class Payload
     /**
      * @return string
      */
-    public function getIpv4()
-    {
+    public function getIpv4() {
         return $this->ipv4;
     }
 
     /**
      * @return bool
      */
-    public function isValidIpv4()
-    {
+    public function isValidIpv4() {
         return (bool)filter_var($this->ipv4, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4);
     }
 
     /**
      * @return string
      */
-    public function getIpv6()
-    {
+    public function getIpv6() {
         return $this->ipv6;
     }
 
     /**
      * @return bool
      */
-    public function isValidIpv6()
-    {
+    public function isValidIpv6() {
         return (bool)filter_var($this->ipv6, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6);
     }
 
     /**
      * @return bool
      */
-    public function isForce()
-    {
+    public function isForce() {
         return $this->force;
     }
 }

@@ -2,8 +2,7 @@
 
 namespace netcup\DNS\API;
 
-final class Config
-{
+final class Config {
 
     /**
      * @var string
@@ -45,8 +44,7 @@ final class Config
      */
     private $debug;
 
-    public function __construct(array $config)
-    {
+    public function __construct(array $config) {
         foreach (get_object_vars($this) as $key => $val) {
             if (isset($config[$key])) {
                 $this->$key = $config[$key];
@@ -57,8 +55,7 @@ final class Config
     /**
      * @return bool
      */
-    public function isValid()
-    {
+    public function isValid() {
         return
             !empty($this->username) &&
             !empty($this->password) &&
@@ -66,70 +63,61 @@ final class Config
             !empty($this->apiPassword) &&
             !empty($this->customerId) &&
             !empty($this->logFile);
-
     }
 
     /**
      * @return string
      */
-    public function getUsername()
-    {
+    public function getUsername() {
         return $this->username;
     }
 
     /**
      * @return string
      */
-    public function getPassword()
-    {
+    public function getPassword() {
         return $this->password;
     }
 
     /**
      * @return string
      */
-    public function getApiKey()
-    {
+    public function getApiKey() {
         return $this->apiKey;
     }
 
     /**
      * @return string
      */
-    public function getApiPassword()
-    {
+    public function getApiPassword() {
         return $this->apiPassword;
     }
 
     /**
      * @return int
      */
-    public function getCustomerId()
-    {
+    public function getCustomerId() {
         return $this->customerId;
     }
 
     /**
      * @return bool
      */
-    public function isLog()
-    {
+    public function isLog() {
         return $this->log;
     }
-    
+
     /**
      * @return string
      */
-    public function getLogFile()
-    {
+    public function getLogFile() {
         return $this->logFile;
     }
 
     /**
      * @return bool
      */
-    public function isDebug()
-    {
+    public function isDebug() {
         return $this->debug;
     }
 }

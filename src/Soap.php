@@ -11,7 +11,7 @@ use SoapFault;
  * Please note: We cannot guarantee the function of this client.  
  * @service DomainWebserviceSoapClient
  */
-class DomainWebserviceSoapClient{
+class DomainWebserviceSoapClient {
 
 
 	/**
@@ -19,13 +19,13 @@ class DomainWebserviceSoapClient{
 	 *
 	 * @var string
 	 */
-	public static $_WsdlUri='https://ccp.netcup.net/run/webservice/servers/endpoint.php?WSDL';
+	public static $_WsdlUri = 'https://ccp.netcup.net/run/webservice/servers/endpoint.php?WSDL';
 	/**
 	 * The PHP SoapClient object
 	 *
 	 * @var object
 	 */
-	public static $_Server=NULL;
+	public static $_Server = NULL;
 
 	/**
 	 * Send a SOAP request to the server
@@ -34,12 +34,12 @@ class DomainWebserviceSoapClient{
 	 * @param array $param The parameters
 	 * @return mixed The server response
 	 */
-	public static function _Call($method,$param) {
+	public static function _Call($method, $param) {
 		try {
 			if (is_NULL(self::$_Server)) {
 				self::$_Server = new SoapClient(self::$_WsdlUri);
 			}
-			return self::$_Server->__soapCall($method,$param);
+			return self::$_Server->__soapCall($method, $param);
 		} catch (Exception $exception) {
 			throw new SoapFault($exception->faultstring, $exception->faultcode, $exception);
 		}
@@ -58,7 +58,7 @@ class DomainWebserviceSoapClient{
 	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
 	 */
-	public function createDomain($domainname,$customernumber,$contacts,$nameservers,$apikey,$apisessionid,$clientrequestid){
+	public function createDomain($domainname, $customernumber, $contacts, $nameservers, $apikey, $apisessionid, $clientrequestid) {
 		return self::_Call('createDomain', func_get_args());
 	}
 
@@ -78,7 +78,7 @@ class DomainWebserviceSoapClient{
 	 * @param DnssecentriesObject $dnssecentries DNSSEC entries for a domain Field is optional.
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
 	 */
-	public function updateDomain($domainname,$customernumber,$contacts,$nameservers,$apikey,$apisessionid,$clientrequestid,$keepdnssecrecords,$dnssecentries){
+	public function updateDomain($domainname, $customernumber, $contacts, $nameservers, $apikey, $apisessionid, $clientrequestid, $keepdnssecrecords, $dnssecentries) {
 		return self::_Call('updateDomain', func_get_args());
 	}
 
@@ -96,7 +96,7 @@ class DomainWebserviceSoapClient{
 	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
 	 */
-	public function transferDomain($domainname,$customernumber,$contacts,$nameservers,$apikey,$apisessionid,$authcode,$clientrequestid){
+	public function transferDomain($domainname, $customernumber, $contacts, $nameservers, $apikey, $apisessionid, $authcode, $clientrequestid) {
 		return self::_Call('transferDomain', func_get_args());
 	}
 
@@ -111,7 +111,7 @@ class DomainWebserviceSoapClient{
 	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
 	 */
-	public function logout($customernumber,$apikey,$apisessionid,$clientrequestid){
+	public function logout($customernumber, $apikey, $apisessionid, $clientrequestid) {
 		return self::_Call('logout', func_get_args());
 	}
 
@@ -126,7 +126,7 @@ class DomainWebserviceSoapClient{
 	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc. In responsedata field: string $apisessionid Server generated ID to be used with further requests when login was successful.
 	 */
-	public function login($customernumber,$apikey,$apipassword,$clientrequestid){
+	public function login($customernumber, $apikey, $apipassword, $clientrequestid) {
 		return self::_Call('login', func_get_args());
 	}
 
@@ -141,7 +141,7 @@ class DomainWebserviceSoapClient{
 	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc. In responsedata field: ArrayOPollObject Unread Messages for this customer.
 	 */
-	public function poll($messagecount,$customernumber,$apikey,$apisessionid,$clientrequestid){
+	public function poll($messagecount, $customernumber, $apikey, $apisessionid, $clientrequestid) {
 		return self::_Call('poll', func_get_args());
 	}
 
@@ -156,7 +156,7 @@ class DomainWebserviceSoapClient{
 	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
 	 */
-	public function ackpoll($apilogid,$customernumber,$apikey,$apisessionid,$clientrequestid){
+	public function ackpoll($apilogid, $customernumber, $apikey, $apisessionid, $clientrequestid) {
 		return self::_Call('ackpoll', func_get_args());
 	}
 
@@ -173,7 +173,7 @@ class DomainWebserviceSoapClient{
 	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
 	 */
-	public function changeOwnerDomain($new_handle_id,$domainname,$customernumber,$apikey,$apisessionid,$clientrequestid){
+	public function changeOwnerDomain($new_handle_id, $domainname, $customernumber, $apikey, $apisessionid, $clientrequestid) {
 		return self::_Call('changeOwnerDomain', func_get_args());
 	}
 
@@ -190,7 +190,7 @@ class DomainWebserviceSoapClient{
 	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
 	 */
-	public function cancelDomain($domainname,$customernumber,$apikey,$apisessionid,$clientrequestid){
+	public function cancelDomain($domainname, $customernumber, $apikey, $apisessionid, $clientrequestid) {
 		return self::_Call('cancelDomain', func_get_args());
 	}
 
@@ -206,7 +206,7 @@ class DomainWebserviceSoapClient{
 	 * @param registryinformationflag $registryinformationflag TRUE getinformation from registry (may be limited)|registryinformationflag FALSE get information from netcup data base only.  Field is optional. Default FALSE.
 	 * @return Responsemessage $responsemessage Responsemessage with information about result of the action like short and long resultmessages, message status, etc.
 	 */
-	public function infoDomain($domainname,$customernumber,$apikey,$apisessionid,$clientrequestid,$registryinformationflag){
+	public function infoDomain($domainname, $customernumber, $apikey, $apisessionid, $clientrequestid, $registryinformationflag) {
 		return self::_Call('infoDomain', func_get_args());
 	}
 
@@ -221,7 +221,7 @@ class DomainWebserviceSoapClient{
 	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
 	 */
-	public function getAuthcodeDomain($domainname,$customernumber,$apikey,$apisessionid,$clientrequestid){
+	public function getAuthcodeDomain($domainname, $customernumber, $apikey, $apisessionid, $clientrequestid) {
 		return self::_Call('getAuthcodeDomain', func_get_args());
 	}
 
@@ -236,7 +236,7 @@ class DomainWebserviceSoapClient{
 	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
 	 */
-	public function infoHandle($handle_id,$customernumber,$apikey,$apisessionid,$clientrequestid){
+	public function infoHandle($handle_id, $customernumber, $apikey, $apisessionid, $clientrequestid) {
 		return self::_Call('infoHandle', func_get_args());
 	}
 
@@ -250,7 +250,7 @@ class DomainWebserviceSoapClient{
 	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
 	 */
-	public function listallHandle($customernumber,$apikey,$apisessionid,$clientrequestid){
+	public function listallHandle($customernumber, $apikey, $apisessionid, $clientrequestid) {
 		return self::_Call('listallHandle', func_get_args());
 	}
 
@@ -266,7 +266,7 @@ class DomainWebserviceSoapClient{
 	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
 	 */
-	public function deleteHandle($handle_id,$customernumber,$apikey,$apisessionid,$clientrequestid){
+	public function deleteHandle($handle_id, $customernumber, $apikey, $apisessionid, $clientrequestid) {
 		return self::_Call('deleteHandle', func_get_args());
 	}
 
@@ -292,7 +292,7 @@ class DomainWebserviceSoapClient{
 	 * @param ArrayOfOptionalhandleattributes $optionalhandleattributes Optional handle attributes as array of Optionalhandleattribute. Please define in format for example: $optionalhandleattribute = new Optionalhandleattribute(); $optionalhandleattribute->item = 'state'; $optionalhandleattribute->value = utf8_encode("Bayern"); $optionalhandleattributes[] = $optionalhandleattribute; $optionalhandleattribute = new Optionalhandleattribute(); $optionalhandleattribute->item = 'handlecomment'; $optionalhandleattribute->value = utf8_encode("Important customer"); $optionalhandleattributes[] = $optionalhandleattribute; Possible values are: "fax" fax number in format +49.12345678, "state" max40chars state for example Sachsen, "handlecomment" max80chars comment for the handle. Value will not be transfered to any registry., "birthdate" dateformatyyyymmdd date of birth in format YYYY-MM-DD, "birthplace" max70chars place of birth, "birthcountrycountrycode" countrycode2char country of birth, "birthstate" max63chars state of birth, "birthplacepostalcode" max12chars place of the postcode, "registrationnumber" max70chars registernumber, "idcardnumber" max70chars passportnumber, "idcardissuedate" dateformatyyyymmdd passport date of issue in format YYYY-MM-DD, "idcardissueauthority" max70chars passport issuing authority, "taxnumber" max70chars tax number, "vatnumber" max70chars sales tax number, "aeroensid" max70chars aeroensid mandatory for .aero domains, "aeroenspassword" max70chars aeroenspassword mandatory for .aero domains, "xxxmemberid" max20chars xxxmemberid mandatory for .xxx domains, "xxxmemberpasswort" max20chars xxxmemberpasswort mandatory for .xxx domains, "proprofession" max70chars profession mandatory for .pro domains, "traveluin" max20chars traveluin mandatory for .travel domains, "trademarknumber" max80chars brandnumber, "trademarkcountrycode" countrycode2char registry place of the brand, "coopverificationcode" max20chars coopverificationcode, "asiatypeofentity" asiatypeofentity type of legal peronality mandatory for .asia domains. Allowed values are: naturalPerson, corporation, cooperative, partnership, government, politicalParty, society, institution, "asiaformofidentity" asiaformofidentity form of identity mandatory for .asia domains Allowed values are: certificate, legislation, passport, politicalPartyRegistry, societyRegistry, "asiaidentnumber" max255chars identificationnumber mandatory for .asia domains, "jobstitelposition" max70chars title or position mandatory for .jobs domains, "jobswebsite" url URL of website mandatory for .jobs domains, "jobsindustrytype" max128chars type of company mandatory for .jobs domains, "jobscontactisadmin" yesno Yes or No mandatory for .jobs domains, "jobsassociationmember" yesno Yes or No mandatory for .jobs domains, "esnumbertype" esnumbertype NIF/NIE/DNI-number type mandatory for .es domains, "esnifnienumber" max70chars NIF/NIE/DNI-number mandatory for .es domains
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
 	 */
-	public function updateHandle($customernumber,$apikey,$apisessionid,$handle_id,$type,$name,$organisation,$street,$postalcode,$city,$countrycode,$telephone,$email,$clientrequestid,$optionalhandleattributes){
+	public function updateHandle($customernumber, $apikey, $apisessionid, $handle_id, $type, $name, $organisation, $street, $postalcode, $city, $countrycode, $telephone, $email, $clientrequestid, $optionalhandleattributes) {
 		return self::_Call('updateHandle', func_get_args());
 	}
 
@@ -318,7 +318,7 @@ class DomainWebserviceSoapClient{
 	 * @param ArrayOfOptionalhandleattributes $optionalhandleattributes Optional handle attributes as array of Optionalhandleattribute. Please define in format for example: $optionalhandleattribute = new Optionalhandleattribute(); $optionalhandleattribute->item = 'state'; $optionalhandleattribute->value = utf8_encode("Bayern"); $optionalhandleattributes[] = $optionalhandleattribute; $optionalhandleattribute = new Optionalhandleattribute(); $optionalhandleattribute->item = 'handlecomment'; $optionalhandleattribute->value = utf8_encode("Important customer"); $optionalhandleattributes[] = $optionalhandleattribute; Possible values are: "fax" fax number in format +49.12345678, "state" max40chars state for example Sachsen, "handlecomment" max80chars comment for the handle. Value will not be transfered to any registry., "birthdate" dateformatyyyymmdd date of birth in format YYYY-MM-DD, "birthplace" max70chars place of birth, "birthcountrycountrycode" countrycode2char country of birth, "birthstate" max63chars state of birth, "birthplacepostalcode" max12chars place of the postcode, "registrationnumber" max70chars registernumber, "idcardnumber" max70chars passportnumber, "idcardissuedate" dateformatyyyymmdd passport date of issue in format YYYY-MM-DD, "idcardissueauthority" max70chars passport issuing authority, "taxnumber" max70chars tax number, "vatnumber" max70chars sales tax number, "aeroensid" max70chars aeroensid mandatory for .aero domains, "aeroenspassword" max70chars aeroenspassword mandatory for .aero domains, "xxxmemberid" max20chars xxxmemberid mandatory for .xxx domains, "xxxmemberpasswort" max20chars xxxmemberpasswort mandatory for .xxx domains, "proprofession" max70chars profession mandatory for .pro domains, "traveluin" max20chars traveluin mandatory for .travel domains, "trademarknumber" max80chars brandnumber, "trademarkcountrycode" countrycode2char registry place of the brand, "coopverificationcode" max20chars coopverificationcode, "asiatypeofentity" asiatypeofentity type of legal peronality mandatory for .asia domains. Allowed values are: naturalPerson, corporation, cooperative, partnership, government, politicalParty, society, institution, "asiaformofidentity" asiaformofidentity form of identity mandatory for .asia domains Allowed values are: certificate, legislation, passport, politicalPartyRegistry, societyRegistry, "asiaidentnumber" max255chars identificationnumber mandatory for .asia domains, "jobstitelposition" max70chars title or position mandatory for .jobs domains, "jobswebsite" url URL of website mandatory for .jobs domains, "jobsindustrytype" max128chars type of company mandatory for .jobs domains, "jobscontactisadmin" yesno Yes or No mandatory for .jobs domains, "jobsassociationmember" yesno Yes or No mandatory for .jobs domains, "esnumbertype" esnumbertype NIF/NIE/DNI-number type mandatory for .es domains, "esnifnienumber" max70chars NIF/NIE/DNI-number mandatory for .es domains
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
 	 */
-	public function createHandle($customernumber,$apikey,$apisessionid,$type,$name,$organisation,$street,$postalcode,$city,$countrycode,$telephone,$email,$clientrequestid,$optionalhandleattributes){
+	public function createHandle($customernumber, $apikey, $apisessionid, $type, $name, $organisation, $street, $postalcode, $city, $countrycode, $telephone, $email, $clientrequestid, $optionalhandleattributes) {
 		return self::_Call('createHandle', func_get_args());
 	}
 
@@ -332,7 +332,7 @@ class DomainWebserviceSoapClient{
 	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc. Contains DomainObject objects in responsedata field.
 	 */
-	public function listallDomains($customernumber,$apikey,$apisessionid,$clientrequestid){
+	public function listallDomains($customernumber, $apikey, $apisessionid, $clientrequestid) {
 		return self::_Call('listallDomains', func_get_args());
 	}
 
@@ -349,7 +349,7 @@ class DomainWebserviceSoapClient{
 	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc. Contains TopleveldomainObject objects in responsedata field.
 	 */
-	public function priceTopleveldomain($customernumber,$apikey,$apisessionid,$topleveldomain,$clientrequestid){
+	public function priceTopleveldomain($customernumber, $apikey, $apisessionid, $topleveldomain, $clientrequestid) {
 		return self::_Call('priceTopleveldomain', func_get_args());
 	}
 
@@ -364,7 +364,7 @@ class DomainWebserviceSoapClient{
 	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
 	 */
-	public function infoDnsRecords($domainname,$customernumber,$apikey,$apisessionid,$clientrequestid){
+	public function infoDnsRecords($domainname, $customernumber, $apikey, $apisessionid, $clientrequestid) {
 		return self::_Call('infoDnsRecords', func_get_args());
 	}
 
@@ -380,7 +380,7 @@ class DomainWebserviceSoapClient{
 	 * @param Dnsrecordset $dnsrecordset Object that contains DNS Records.
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
 	 */
-	public function updateDnsRecords($domainname,$customernumber,$apikey,$apisessionid,$clientrequestid,$dnsrecordset){
+	public function updateDnsRecords($domainname, $customernumber, $apikey, $apisessionid, $clientrequestid, $dnsrecordset) {
 		return self::_Call('updateDnsRecords', func_get_args());
 	}
 
@@ -396,7 +396,7 @@ class DomainWebserviceSoapClient{
 	 * @param Dnszone $dnszone Object that contains settings for DNS zone.
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
 	 */
-	public function updateDnsZone($domainname,$customernumber,$apikey,$apisessionid,$clientrequestid,$dnszone){
+	public function updateDnsZone($domainname, $customernumber, $apikey, $apisessionid, $clientrequestid, $dnszone) {
 		return self::_Call('updateDnsZone', func_get_args());
 	}
 
@@ -411,7 +411,7 @@ class DomainWebserviceSoapClient{
 	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
 	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
 	 */
-	public function infoDnsZone($domainname,$customernumber,$apikey,$apisessionid,$clientrequestid){
+	public function infoDnsZone($domainname, $customernumber, $apikey, $apisessionid, $clientrequestid) {
 		return self::_Call('infoDnsZone', func_get_args());
 	}
 }
@@ -425,7 +425,7 @@ class DomainWebserviceSoapClient{
  * @pw_element string $ipv6 IPv6 address
  * @pw_complex Nameserverentry
  */
-class Nameserverentry{
+class Nameserverentry {
 	/**
 	 * Hostname of the nameserver
 	 *
@@ -460,7 +460,7 @@ class Nameserverentry{
  * @pw_element Nameserverentry $nameserver8 Object with information about nameserver.
  * @pw_complex Nameserverentries
  */
-class Nameserverentries{
+class Nameserverentries {
 	/**
 	 * Object with information about nameserver.
 	 *
@@ -524,7 +524,7 @@ class Nameserverentries{
  * @pw_element string $responsedata Data from the response like domain object.
  * @pw_complex Responsemessage
  */
-class Responsemessage{
+class Responsemessage {
 	/**
 	 * Unique ID for the request, created by the server
 	 *
@@ -597,7 +597,7 @@ class Responsemessage{
  * @pw_element DnssecentriesObject $dnssecentries Dnssecentries for this domain (optional).
  * @pw_complex DomainObject
  */
-class DomainObject{
+class DomainObject {
 	/**
 	 * Name of the domain.
 	 *
@@ -713,7 +713,7 @@ class DomainObject{
  * @pw_element string $onsitec name Name of handle at registry.
  * @pw_complex Registrycontacts
  */
-class Registrycontacts{
+class Registrycontacts {
 	/**
 	 * name Name of handle at registry.
 	 *
@@ -761,7 +761,7 @@ class Registrycontacts{
  * @pw_element string $value Value of optional attribute
  * @pw_complex Optionalhandleattribute
  */
-class Optionalhandleattribute{
+class Optionalhandleattribute {
 	/**
 	 * name of the optional attribute
 	 *
@@ -793,7 +793,7 @@ class Optionalhandleattribute{
  * @pw_element boolean $assignedtodomain is handle in use.
  * @pw_complex HandleObject
  */
-class HandleObject{
+class HandleObject {
 	/**
 	 * @var positiveInteger
 	 */
@@ -880,7 +880,7 @@ class HandleObject{
  * @pw_element string $onsitec Id of contact handle.
  * @pw_complex Contactentries
  */
-class Contactentries{
+class Contactentries {
 	/**
 	 * Id of contact handle.
 	 *
@@ -925,7 +925,7 @@ class Contactentries{
  * @pw_element string $apisessionid Unique API session id created by login command.
  * @pw_complex SessionObject
  */
-class SessionObject{
+class SessionObject {
 	/**
 	 * Unique API session id created by login command.
 	 *
@@ -952,7 +952,7 @@ class SessionObject{
  * @pw_element string $apisessionid apisessionid
  * @pw_complex PollObject
  */
-class PollObject{
+class PollObject {
 	/**
 	 * id
 	 *
@@ -1042,7 +1042,7 @@ class PollObject{
  * @pw_element positiveInteger $runtimemonths Runtime in months for this domain.
  * @pw_complex TopleveldomainObject
  */
-class TopleveldomainObject{
+class TopleveldomainObject {
 	/**
 	 * Name of the top-level domain.
 	 *
@@ -1080,7 +1080,7 @@ class TopleveldomainObject{
  * @pw_element positiveInteger $keytag Keytag
  * @pw_complex DnssecentryObject
  */
-class DnssecentryObject{
+class DnssecentryObject {
 	/**
 	 * Type of the DNSSEC records to provide (digest or publickey).
 	 *
@@ -1136,7 +1136,7 @@ class DnssecentryObject{
  * @pw_element DnssecentryObject $dnssecentry20 Dnssec entry
  * @pw_complex DnssecentriesObject
  */
-class DnssecentriesObject{
+class DnssecentriesObject {
 	/**
 	 * Dnssec entry
 	 *
@@ -1259,7 +1259,7 @@ class DnssecentriesObject{
  * @pw_element string $state State of the record. Read only, inputs are ignored.
  * @pw_complex Dnsrecord
  */
-class Dnsrecord{
+class Dnsrecord {
 	/**
 	 * Unique of the record. Leave id empty for new records.
 	 *
@@ -1310,7 +1310,7 @@ class Dnsrecord{
  * @pw_element ArrayOfDnsrecord $dnsrecords Array of DNS records for a zone.
  * @pw_complex Dnsrecordset
  */
-class Dnsrecordset{
+class Dnsrecordset {
 	/**
 	 * Array of DNS records for a zone.
 	 *
@@ -1331,7 +1331,7 @@ class Dnsrecordset{
  * @pw_element boolean $dnssecstatus Status of DNSSSEC in this nameserver. Enabling DNSSEC possible every 24 hours.
  * @pw_complex Dnszone
  */
-class Dnszone{
+class Dnszone {
 	/**
 	 * Name of the zone - this is a domain name.
 	 *

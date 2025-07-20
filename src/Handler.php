@@ -4,8 +4,7 @@ namespace netcup\DNS\API;
 
 use RuntimeException;
 
-final class Handler
-{
+final class Handler {
     /**
      * @var array
      */
@@ -21,8 +20,7 @@ final class Handler
      */
     private $payload;
 
-    public function __construct(array $config, array $payload)
-    {
+    public function __construct(array $config, array $payload) {
         $this->config = new Config($config);
 
         if (!$this->config->isValid()) {
@@ -49,8 +47,7 @@ final class Handler
         }
     }
 
-    public function __destruct()
-    {
+    public function __destruct() {
         $this->doExit();
     }
 
@@ -59,8 +56,7 @@ final class Handler
      *
      * @return self
      */
-    private function doLog($msg)
-    {
+    private function doLog($msg) {
         $this->log[$this->payload->getDomain()][] = sprintf('[%s] %s', date('c'), $msg);
 
         if ($this->config->isDebug()) {
@@ -70,8 +66,7 @@ final class Handler
         return $this;
     }
 
-    private function doExit()
-    {
+    private function doExit() {
         if (!$this->config->isLog()) {
             return;
         }
@@ -94,8 +89,7 @@ final class Handler
      *
      * @return self
      */
-    public function doRun()
-    {
+    public function doRun() {
         $clientRequestId = md5($this->payload->getDomain() . time());
 
         $dnsClient = new Soap\DomainWebserviceSoapClient();
@@ -130,7 +124,8 @@ final class Handler
             if ($recordHostnameReal === $this->payload->getDomain()) {
 
                 // update A Record if exists and IP has changed
-                if ('A' === $record->type && $this->payload->getIpv4() &&
+                if (
+                    'A' === $record->type && $this->payload->getIpv4() &&
                     (
                         $this->payload->isForce() ||
                         $record->destination !== $this->payload->getIpv4()
@@ -142,7 +137,8 @@ final class Handler
                 }
 
                 // update AAAA Record if exists and IP has changed
-                if ('AAAA' === $record->type && $this->payload->getIpv6() &&
+                if (
+                    'AAAA' === $record->type && $this->payload->getIpv6() &&
                     (
                         $this->payload->isForce()
                         || $record->destination !== $this->payload->getIpv6()
