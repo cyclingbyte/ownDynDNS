@@ -11,7 +11,7 @@ require_once __DIR__ . '/src/Config.php';
 require_once __DIR__ . '/src/Payload.php';
 require_once __DIR__ . '/src/Handler.php';
 
-if (!file_exists('.env')) {
+if (!file_exists('../.env')) {
     throw new RuntimeException('.env file missing');
 }
 
